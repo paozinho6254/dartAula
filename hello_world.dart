@@ -9,6 +9,10 @@ void main() {
 
   //Inicio uma variável que possa ser String
   
+  if(nome == ""){
+    nome = null;
+  }
+
   //caso queira tirar a variável de nula
   //String nome = 'Pãozinho';
   
