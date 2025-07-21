@@ -4,17 +4,13 @@ import 'dart:io';
 void main() {
 
   print('Insira seu nome: ');
-  //Inicializo o input e também já pedindo uma inserção
+  //Inicializo o nome e também já pedindo uma inserção
   String? nome = stdin.readLineSync();
 
-  //Inicio uma variável que possa ser String
-  
+  //claro, se o usuário por um ponto em branco, nome será considerado null
   if(nome == ""){
     nome = null;
   }
-
-  //caso queira tirar a variável de nula
-  //String nome = 'Pãozinho';
   
   //funciona quase como um if/else, basicamente cliente recebe o valor que tiver em nome,
   //porém, se nome não tiver dados (for nulo), ele por meio do ?? receberá um valor "template"

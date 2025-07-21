@@ -7,5 +7,10 @@ void main(){
   String? nome = stdin.readLineSync();
 
   //informando a idade
+  stdout.write("Digite sua idade: ");
+  String? idadeInput = stdin.readLineSync();
+  int idade = int.parse(idadeInput ?? '0'); //se idade for nula converte
+
+print("olá, $nome! você tem $idade anos");
 
 }
