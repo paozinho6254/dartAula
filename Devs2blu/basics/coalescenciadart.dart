@@ -7,8 +7,8 @@ void main(){
     'endereco' : null,
   };
 
-  print('Cadastro de usuarios\n');
-  print('Usuário 1');
+  print('Cadastro de usuarios');
+  print('Usuário 1\n');
   String nome1 = usuario1['nome'] ?? 'Nome não informado';
   String email1 = usuario1['email'] ?? 'Email não informado';
   String telefone1 = usuario1['telefone'] ?? 'Telefone não informado';
