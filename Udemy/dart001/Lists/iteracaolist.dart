@@ -36,9 +36,15 @@ void main(){
 
   //forEach 
   print("\nForEach clássico:");
+  // Na lista nomes, para cada elemento (nome, tanto faz o tipo) faça:
   nomes.forEach((nome) {
-    print(nome.toUpperCase());
+    print(nome.toUpperCase()); //escreva as strings em maiúsculo
   });
 
+  print("\nForEach com subList:");
+  //mesmo que o for acima, mas com subList
+  nomes.sublist(2).forEach((nome) {
+    print(nome.toUpperCase()); //escreva as strings em maiúsculo
+  });
 
 }
