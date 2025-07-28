@@ -1,0 +1,127 @@
+<!-- Apenas esclarecendo, esta é ma tela de teste que deixei nas anotações do meu material
+ onde só explico o que cada um dos processos tem a ver com o cadastro de um carro -->
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastro de Carro por Partes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background-color: #f4f4f4;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 500px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    select, input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Cadastro de Carro por Partes</h1>
+
+  <form>
+    <label for="body">Body/Chassis</label>
+    <select id="body">
+      <option>Ferro</option>
+      <option>Fibra de carbono</option>
+      <option>Alumínio</option>
+    </select>
+
+    <label for="engine">Engine</label>
+    <select id="engine">
+      <option>V6</option>
+      <option>V8</option>
+      <option>Elétrico</option>
+    </select>
+
+    <label for="intake">Intake System</label>
+    <select id="intake">
+      <option>Filtro Esportivo</option>
+      <option>Filtro Original</option>
+    </select>
+
+    <label for="exhaust">Exhaust</label>
+    <select id="exhaust">
+      <option>Escapamento Esportivo</option>
+      <option>Escapamento Silencioso</option>
+    </select>
+
+    <label for="turbo">Turbo Kits</label>
+    <select id="turbo">
+      <option>Turbo Simples</option>
+      <option>Biturbo</option>
+      <option>Sem turbo</option>
+    </select>
+
+    <label for="transmission">Transmission</label>
+    <select id="transmission">
+      <option>Manual</option>
+      <option>Automática</option>
+      <option>CVT</option>
+    </select>
+
+    <label for="drivetrain">Drivetrain</label>
+    <select id="drivetrain">
+      <option>Tração Dianteira</option>
+      <option>Tração Traseira</option>
+      <option>AWD</option>
+    </select>
+
+    <label for="suspension">Suspension</label>
+    <select id="suspension">
+      <option>Original</option>
+      <option>Esportiva</option>
+      <option>A Ar</option>
+    </select>
+
+    <label for="tires">Tires</label>
+    <select id="tires">
+      <option>Pneu Comum</option>
+      <option>Pneu de Alta Performance</option>
+      <option>Pneu de Corrida</option>
+    </select>
+
+    <button type="submit">Cadastrar Carro</button>
+  </form>
+
+</body>
+</html>
