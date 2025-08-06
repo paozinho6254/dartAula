@@ -1,4 +1,4 @@
-import 'classe.dart';
+import '1classe.dart';
 import 'dart:io';
 
 void main(){
