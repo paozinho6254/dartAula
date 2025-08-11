@@ -1,7 +1,6 @@
 //Crie uma classe abstrata `Veiculo` com métodos `ligar()` e `desligar()`. 
 //Implemente as classes `Carro` e `Moto`, sobrescrevendo os métodos.
 
-import 'dart:io';
 
 abstract class Veiculo{
   String? _marca;
