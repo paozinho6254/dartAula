@@ -21,6 +21,6 @@ class Retangulo {
 
 void main(){
 
-  Retangulo ret = Retangulo(2, 3);
+  Retangulo ret = Retangulo();
 
 }
