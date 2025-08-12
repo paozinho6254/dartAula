@@ -2,12 +2,12 @@ import 'package:mysql_client/mysql_client.dart';
 
 // Configuração de conexão com banco de dados
 // Diretivas para conexão com o banco
-const String _dbHost = '127.0.0.1'; // localhost
+const String _dbHost = '127.0.0.1'; 
 const int _dbPort = 3306;
 
 // diretivas do usuário e o nome do database (altere conforme a sua necessidade)
-const String _dbUser = 'root';
-const String _dbPassword = 'root';
+const String _dbUser = 'paozinho';
+const String _dbPassword = 'senha';
 const String _dbDatabase = 'biblioteca';
 void main() async {
   // Inicializa a conexão com o banco de dados
@@ -24,7 +24,7 @@ void main() async {
   //aqui executa os comando MySql
   try {
     print('\n--- Incluindo Livro ---');
-    await _incluirLivro(conn, 'A Revolução dos Bichos', 'George Orwell');
+    await _incluirLivro(conn, 'The midinight library', 'Rebeca Donovan');
     print('\n--- Listando livros ---');
     await _listarLivros(conn);
   } catch (erro) {
@@ -47,6 +47,7 @@ Future<MySQLConnection?> _connectToDatabase() async {
       userName: _dbUser,
       databaseName: _dbDatabase,
       password: _dbPassword,
+      secure: false,
     );
     await conn.connect();
     return conn;
@@ -62,14 +63,13 @@ Future<void> _incluirLivro(
   String titulo,
   String autor,)
   async {
-    var result = await conn.execute(
+    await conn.execute(
       'insert into livros (titulo, autor) values (:titulo,:autor)',
       {'titulo': titulo,'autor': autor},);
       print('livro incluido sucessfull');
       try{} catch (erro) {
         print("erro na inclusão $erro");
       }
-    
   }
 
 Future<void> _listarLivros(MySQLConnection conn) async {
