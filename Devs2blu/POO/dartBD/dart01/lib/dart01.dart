@@ -24,7 +24,7 @@ void main() async {
   //aqui executa os comando MySql
   try {
     print('\n--- Incluindo Livro ---');
-    await _incluirLivro(conn, 'The midinight library', 'Rebeca Donovan');
+    await _incluirLivro(conn, 'Sempre use o github', 'Dostoiévski');
     print('\n--- Listando livros ---');
     await _listarLivros(conn);
   } catch (erro) {

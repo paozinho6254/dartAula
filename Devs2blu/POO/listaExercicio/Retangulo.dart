@@ -23,4 +23,10 @@ void main(){
 
   Retangulo ret = Retangulo();
 
+  double altura = 5.0;
+  double largura = 10.0;
+
+  print('Área do retangulo: ${ret.calcArea(altura, largura)}');
+  print('Perimetro do retangulo: ${ret.calcPerimetro(altura, largura)}');
+
 }
