@@ -14,8 +14,8 @@ void main(){
 
   print('${p1.nome} você terá seu nome trocado para: ${p1.trocarNome()}');
 
-  p1.dinheiro = 200;
-  p1.saldo;
+  p1.setSaldo = 200;
+  print('Saldo atual ${p1.getSaldo}');
   
 }
 
@@ -37,11 +37,19 @@ class Pessoa{
   bool casado;
   
   double? _dinheiro;
+
+  set setSaldo(double valor){
+    print("Dinheiro de $nome foi atualizado!");
+    _dinheiro = valor;
+  }
+
+  get getSaldo{return _dinheiro;}
+
   //Aniversario para previnir valores nulos
   void aniversarioNull() {
     //Não, idade++ não da certo, pois idade pode ser nulo
     //Null assertion, idade não será nula aqui
-    idade = idade! + 1;
+    idade = idade! + 1; 
     print("RECEBA! Feliz aniversário, $nome! Agora você tem $idade anos.");
     }
   //Aniversario pós construtor, onde programa já sabe
@@ -64,15 +72,6 @@ class Pessoa{
   
   void exibirDados(){
      //coloca pra exibir os dados do cara
-  }
-  
-  set dinheiro(double valor){
-    print("Dinheiro de $nome foi atualizado!");
-    _dinheiro = valor;
-  }
-
-  get saldo{
-    print("Saldo atual $_dinheiro");
-  }
+  }  
 
 }
