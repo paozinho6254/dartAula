@@ -1,14 +1,8 @@
 void main(){
 
-  String nome = "Pãozinho";
-  int idade = 18;
-  
-  String nomeEsposa = "Nathally";
-  int idadeEsposa = 18;
+  Pessoa p2 = Pessoa(nome: 'Joca', idade: 37);
 
-  Pessoa p1 = Pessoa(nome: nome, idade: idade);
-  Esposa e1 = Esposa(nome: nomeEsposa, idade: idadeEsposa);
-
+  Pessoa p1 = Pessoa(nome: "Pãozinho", idade: 18);
   print("Nome: ${p1.nome}");
   print("Idade: ${p1.idade}");
 
@@ -16,9 +10,12 @@ void main(){
 
   print("${p1.nome} agora você tem ${p1.idade} anos.");
   
-  p1.casar(e1.nome);
-  
+  p1.casar();
+
   print('${p1.nome} você terá seu nome trocado para: ${p1.trocarNome()}');
+
+  p1.dinheiro = 200;
+  p1.saldo;
   
 }
 
@@ -39,17 +36,14 @@ class Pessoa{
   int idade;
   bool casado;
   
+  double? _dinheiro;
   //Aniversario para previnir valores nulos
   void aniversarioNull() {
-    if (idade != null) {
-      //Não, idade++ não da certo, pois idade pode ser nulo
-      //Null assertion, idade não será nula aqui
-      idade = idade! + 1;
-      print("RECEBA! Feliz aniversário, $nome! Agora você tem $idade anos.");
-    } else {
-      print("Idade não definida para $nome.");
+    //Não, idade++ não da certo, pois idade pode ser nulo
+    //Null assertion, idade não será nula aqui
+    idade = idade! + 1;
+    print("RECEBA! Feliz aniversário, $nome! Agora você tem $idade anos.");
     }
-  }
   //Aniversario pós construtor, onde programa já sabe
   //que os valores imbutidos não serão nulos e que 
   //o comando idade++ será possível
@@ -59,9 +53,9 @@ class Pessoa{
   }//com isso se demonstra o quanto construtores com required
   //são fundamentais
   
-  void casar(nomeEsposa){
+  void casar(){
     casado = true;
-    print('Parabéns pelo casamento com $nomeEsposa');
+    print('Parabéns pelo casamento');
   }
   
   String trocarNome(){
@@ -72,12 +66,13 @@ class Pessoa{
      //coloca pra exibir os dados do cara
   }
   
-}
+  set dinheiro(double valor){
+    print("Dinheiro de $nome foi atualizado!");
+    _dinheiro = valor;
+  }
 
-class Esposa{
+  get saldo{
+    print("Saldo atual $_dinheiro");
+  }
 
-  Esposa({required this.nome, required this.idade});
-
-  String nome;
-  int idade; 
 }
