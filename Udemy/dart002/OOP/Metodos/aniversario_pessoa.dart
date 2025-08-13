@@ -1,12 +1,13 @@
 void main(){
 
-  Pessoa p1 = Pessoa();
-  Esposa e1 = Esposa();
-  p1.nome = "Pãozinho";
-  p1.idade = 18;
+  String nome = "Pãozinho";
+  int idade = 18;
   
-  e1.nomeEsposa = "Nathally";
-  e1.idade = 18;
+  String nomeEsposa = "Nathally";
+  int idadeEsposa = 18;
+
+  Pessoa p1 = Pessoa(nome: nome, idade: idade);
+  Esposa e1 = Esposa(nome: nomeEsposa, idade: idadeEsposa);
 
   print("Nome: ${p1.nome}");
   print("Idade: ${p1.idade}");
@@ -15,7 +16,7 @@ void main(){
 
   print("${p1.nome} agora você tem ${p1.idade} anos.");
   
-  p1.casar(e1.nomeEsposa);
+  p1.casar(e1.nome);
   
   print('${p1.nome} você terá seu nome trocado para: ${p1.trocarNome()}');
   
@@ -23,11 +24,23 @@ void main(){
 
 class Pessoa{
 
-  String? nome;
-  int? idade;
-  bool? casado = false;
+  //Construtor no required para definir que estes valores realmente serão preenchidos
+  //ao criar um objeto
+  Pessoa({required this.nome, required this.idade, this.casado = false}){
+    print('Adicionando nova pessoa...');
+  }
+
+  Pessoa.casado({required this.nome, required this.idade, this.casado = true});
+
+
+  //com o construtor tendo required, não é mais preciso ter que colocar '?'
+  //para sinalizar ao programa que este atributo possa ser null
+  String nome;
+  int idade;
+  bool casado;
   
-  void aniversario() {
+  //Aniversario para previnir valores nulos
+  void aniversarioNull() {
     if (idade != null) {
       //Não, idade++ não da certo, pois idade pode ser nulo
       //Null assertion, idade não será nula aqui
@@ -37,7 +50,14 @@ class Pessoa{
       print("Idade não definida para $nome.");
     }
   }
-  
+  //Aniversario pós construtor, onde programa já sabe
+  //que os valores imbutidos não serão nulos e que 
+  //o comando idade++ será possível
+  void aniversario() {
+      idade++;
+      print("RECEBA! Feliz aniversário, $nome! Agora você tem $idade anos.");
+  }//com isso se demonstra o quanto construtores com required
+  //são fundamentais
   
   void casar(nomeEsposa){
     casado = true;
@@ -55,6 +75,9 @@ class Pessoa{
 }
 
 class Esposa{
-  String? nomeEsposa;
-  int? idade; 
+
+  Esposa({required this.nome, required this.idade});
+
+  String nome;
+  int idade; 
 }
