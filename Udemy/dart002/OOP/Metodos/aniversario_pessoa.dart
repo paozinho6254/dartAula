@@ -15,7 +15,8 @@ void main(){
   print('${p1.nome} você terá seu nome trocado para: ${p1.trocarNome()}');
 
   p1.setSaldo = 200;
-  print('Saldo atual ${p1.getSaldo}');
+
+  print('Seu saldo atual: R\$${p1.getSaldo}');
   
 }
 
