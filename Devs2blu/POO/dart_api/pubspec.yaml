@@ -1,0 +1,12 @@
+name: api_server
+description: Backend API para o sistema de biblioteca.
+version: 1.0.0
+
+environment:
+  sdk: ^3.8.1
+
+dependencies:
+  mysql_client: ^0.0.27 # Mantemos a conexão com o MySQL aqui
+  shelf: ^1.4.1 # Framework HTTP para Dart
+  shelf_router: ^1.1.0 # Para roteamento de URLs
+  # shelf_static: ^1.1.2 # Opcional: para servir arquivos estáticos, se aplicável
