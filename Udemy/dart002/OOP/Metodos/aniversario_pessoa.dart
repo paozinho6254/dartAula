@@ -50,7 +50,7 @@ class Pessoa{
   void aniversarioNull() {
     //Não, idade++ não da certo, pois idade pode ser nulo
     //Null assertion, idade não será nula aqui
-    idade = idade! + 1; 
+    idade = idade + 1; 
     print("RECEBA! Feliz aniversário, $nome! Agora você tem $idade anos.");
     }
   //Aniversario pós construtor, onde programa já sabe
