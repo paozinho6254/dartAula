@@ -8,7 +8,7 @@ class Cliente {
     required this.nomeCliente,
     required this.cpfCliente,
   });
-
+  
   get getId {
     return idCliente;
   }
