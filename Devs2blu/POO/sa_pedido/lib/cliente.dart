@@ -1,3 +1,5 @@
+import 'conexao.dart';
+
 class Cliente {
   int? idCliente;
   String nomeCliente;

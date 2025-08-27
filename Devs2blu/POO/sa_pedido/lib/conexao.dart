@@ -22,7 +22,8 @@ void main() async {
   print('Conectado ao banco de dados');
 
   try {
-
+    print('\n----Inclusão de cliente----');
+    await _incluirCliente(conn, )
     //Se possível, fazer um main para rodar o pedido da pessoa e o que ela quer fazer
     //Eu não aguento mais esses métodos desgraçados de ensino
 
@@ -53,3 +54,41 @@ Future<MySQLConnection?> _connectToDatabase() async {
     return null;
   }
 }
+
+Future<void> _incluirCliente(
+  MySQLConnection conn,
+  String nome,
+  String email,)
+  async {
+    await conn.execute(
+      'insert into livros (titulo, autor) values (:titulo,:autor)',
+      {'nome': nome,'email': email},);
+      print('livro incluido sucessfull');
+      try{} catch (erro) {
+        print("erro na inclusão $erro");
+      }
+  }
+
+Future<void> _listarLivros(MySQLConnection conn) async {
+  try {
+    var result = await conn.execute(
+      'SELECT idlivro, titulo, autor FROM livros ORDER BY idlivro',
+    );
+
+    if (result.rows.isEmpty) {
+      print('Não achei nada');
+      return;
+    }
+
+    for (var linha in result.rows) {
+      final id = linha.typedColByName<int>('idlivro'); 
+      final titulo = linha.typedColByName<String>('titulo');
+      final autor = linha.typedColByName<String>('autor');
+
+      print('Id: $id, Título: $titulo, Autor: $autor');
+    }
+  } catch (erro) {
+    print("Errouuuu $erro");
+  }
+}
+
