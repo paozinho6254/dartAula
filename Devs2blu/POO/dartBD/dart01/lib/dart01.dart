@@ -47,7 +47,7 @@ Future<MySQLConnection?> _connectToDatabase() async {
       userName: _dbUser,
       databaseName: _dbDatabase,
       password: _dbPassword,
-      secure: false,
+      secure : true,
     );
     await conn.connect();
     return conn;

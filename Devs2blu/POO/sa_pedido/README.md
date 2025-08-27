@@ -1,45 +1,43 @@
-A sample command-line application with an entrypoint in `bin/`, library code
-in `lib/`, and example unit test in `test/`.
+Aqui os itens para criar banco de dados
 
-código para o banco
+create User 'paozinho'@'localhost' identified by 'senha';
+grant all privileges on *.* to 'paozinho'@'localhost';
+select * from mysql.user;
 
-create database pedidos;
+CREATE DATABASE loja;
 
-use pedidos;
+USE loja;
 
-create table clientes(
-cliente_id int primary key auto_increment,
-cliente_nome varchar(45) not null
+CREATE TABLE clientes (
+  idCliente INT AUTO_INCREMENT PRIMARY KEY,
+  nomeCliente VARCHAR(100) NOT NULL,
+  emailCliente VARCHAR(100) UNIQUE NOT NULL,
+  cpfCliente VARCHAR(11) UNIQUE NOT NULL
 );
 
-create table produtos(
-produto_id int primary key auto_increment,
-produto_nome varchar(45) not null,
-produto_preco double not null,
-produto_tipo varchar(45) not null,
-produto_esp varchar(45) not null
+CREATE TABLE produtos (
+  idProduto INT AUTO_INCREMENT PRIMARY KEY,
+  nomeProduto VARCHAR(100) NOT NULL,
+  precoProduto DECIMAL(10,2) NOT NULL,
+  tipoProduto VARCHAR(50) NOT NULL,
+  espProduto VARCHAR(50) NOT NULL
 );
 
-
-create table pedidos(
-pedido_id int primary key auto_increment,
-pedido_idProcuto int not null,
-pedido_idCliente int not null,
-pedido_quantidade int not null,
-foreign key (pedido_idProduto) references produtos(produto_id),
-foreign key (pedido_idCliente) references clientes(cliente_id)
+CREATE TABLE pedidos (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  clienteId INT NOT NULL,
+  descricao VARCHAR(200),
+  valor DECIMAL(10,2) NOT NULL,
+  dataPedido DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (clienteId) REFERENCES clientes(idCliente)
 );
 
-
-select
-c.cliente_nome, 
-pr.produto_nome, 
-pr.produto_tipo, 
-pr.produto_esp, 
-p.pedido_quantidade, 
-(p.pedido_quantidade * pr.produto_preco) as valor_total
-from pedidos p
-join clientes c on p.pedido_idCliente = c.cliente_id
-join produtos pr on p.pedido_idProduto = pr.produto_id;
-
-
+-- Relacionamento N:N (Pedido pode ter vários Produtos)
+CREATE TABLE pedido_produto (
+  pedidoId INT,
+  produtoId INT,
+  quantidade INT DEFAULT 1,
+  PRIMARY KEY (pedidoId, produtoId),
+  FOREIGN KEY (pedidoId) REFERENCES pedidos(id),
+  FOREIGN KEY (produtoId) REFERENCES produtos(idProduto)
+);

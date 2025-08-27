@@ -1,5 +1,1 @@
-void main(){
-
-    
-
-}
+//Definitivamente faça um main para rodar isso e enviar para a classe de conexao

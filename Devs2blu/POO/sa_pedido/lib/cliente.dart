@@ -1,11 +1,13 @@
 class Cliente {
-  int idCliente;
+  int? idCliente;
   String nomeCliente;
+  String emailCliente;
   String cpfCliente;
 
   Cliente({
-    required this.idCliente,
+    this.idCliente,
     required this.nomeCliente,
+    required this.emailCliente,
     required this.cpfCliente,
   });
   
@@ -20,6 +22,14 @@ class Cliente {
   get getNome {
     return nomeCliente;
   }
+  
+  set setEmail(String email) {
+    nomeCliente = email;
+  }
+
+  get getEmail {
+    return emailCliente;
+  }
 
   set setCPF(String cpf) {
     cpfCliente = cpf;
@@ -28,4 +38,10 @@ class Cliente {
   get getCPF {
     return cpfCliente;
   }
+
+  @override
+  String toString() {
+    return 'ID: $idCliente, Nome: $nomeCliente, Email: $emailCliente, CPF: $cpfCliente';
+  }
+
 }
