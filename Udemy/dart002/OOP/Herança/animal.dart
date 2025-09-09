@@ -3,6 +3,8 @@ class Animal {
   String? nome;
   int? idade;
 
+  Animal({required this.nome, required this.idade});
+
   void dormir(){
     print('Dormindo...');
   }
@@ -22,6 +24,14 @@ class Animal {
 
 class Cachorro extends Animal{
 
+  String cidade;
+
+  Cachorro({required super.nome, required super.idade, String? cidade}) :
+    this.cidade = cidade ?? 'cidade não informada'{
+      print('Chachorro do forno');
+    }
+  
+
   void latir(){
     print('Au Au Au');
   }
@@ -29,11 +39,12 @@ class Cachorro extends Animal{
   @override
   void comer (){
     print('Comendo carne...');
+    super.comer();
   }
 
   @override
   String toString(){
-    return 'Cachorro: $nome, Idade: $idade';
+    return 'Cachorro: $nome, Idade: $idade, Cidade: $cidade';
   }
 
 }
@@ -41,6 +52,12 @@ class Cachorro extends Animal{
 
 
 class Gato extends Animal{
+
+  int vidas;
+
+  Gato({required super.nome, required super.idade, required this.vidas}){
+    print('Gato criado');
+  }
 
   void miar(){
     print('MIAAAAAAAAAAAAAAAAU');
@@ -53,7 +70,7 @@ class Gato extends Animal{
 
   @override
   String toString(){
-    return 'Gato: $nome, Idade: $idade';
+    return 'Gato: $nome, Idade: $idade, Vidas restantes: $vidas';
   }
 
 }
@@ -62,16 +79,10 @@ class Gato extends Animal{
 
 void main(){
 
-  Gato gato = Gato();
-  Cachorro cachorro = Cachorro();
-
   // Adicionando itens para cachorro
-  cachorro.nome = "Toby";
-  cachorro.idade = 1;
-
-  gato.nome = "Miausculo";
-  gato.idade = 20;
-
+  Gato gato = Gato(nome: 'Miausculo', idade: 20, vidas: 3);
+  Cachorro cachorro = Cachorro(nome: 'Toby', idade:  1, cidade: 'Blumenau');
+  
   // Teste de coisas de animal
   print("Coisa de cachorro:\n");
   cachorro.latir();
