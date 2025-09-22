@@ -13,33 +13,47 @@ abstract class Funcionario {
 }
 
 class Gerente extends Funcionario {
-  double? _bonus;
+  double _bonus;
 
-  Gerente({int? id, String? nome, double? salarioBase, double? bonus})
-    : _bonus = bonus,
-      super(id: id, nome: nome, salarioBase: salarioBase);
+  Gerente({required int id,
+  required String nome, 
+  required double salarioBase, 
+  required double bonus})
+  : this._bonus = bonus,
+  super(id, nome, salarioBase);
 
   @override
   double calcularSalario() {
-    return _salarioBase! + _bonus!;
+    return _salarioBase + _bonus;
+  }
+
+  @override
+  String toString(){
+    return "Gerente de id: $_id, nome: $_nome, salario total: ${calcularSalario()} com bonus de (R\$$_bonus).";
   }
 }
 
 class Desenvolvedor extends Funcionario {
-  double? _beneficios;
+  double _beneficios;
 
-  Desenvolvedor({
-    int? id,
-    String? nome,
-    double? salarioBase,
-    double? beneficios,
-  }) : _beneficios = beneficios,
-       super(id: id, nome: nome, salarioBase: salarioBase);
+  Desenvolvedor({required int id, 
+  required String nome,
+  required double salarioBase, 
+  required double beneficios}) 
+  : this._beneficios = beneficios,
+  super(id, nome, salarioBase);
+  
 
   @override
   double calcularSalario() {
-    return _salarioBase! - _beneficios!;
+    return _salarioBase - _beneficios;
   }
+
+    @override
+  String toString(){
+    return "Subordinado de id: $_id, nome: $_nome, salario total: ${calcularSalario()} com beneficios de (R\$$_beneficios).";
+  }
+
 }
 
 void main() {
@@ -60,13 +74,7 @@ void main() {
   List<Funcionario> funcionarios = [gerente, dev];
 
   for (Funcionario funca in funcionarios) {
-    print(funca);
+    print("$funca\n");
   }
 
-  print(
-    "Salário do desenvolvedor de de id ${dev._id}: ${dev.calcularSalario()}",
-  );
-  print(
-    "Salário do gerente de id ${gerente._id}: ${gerente.calcularSalario()}",
-  );
 }

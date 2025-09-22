@@ -1,21 +1,15 @@
-class pessoa {
-  String nome;
-  int idade;
+class Pessoa {
+  int _id;
+  String _nome;
 
-  List<pessoa> pessoas = [];
+  Pessoa({required int id, required String nome})
+  : 
+  this._id = id,
+  this._nome = nome;
 
-  pessoa(this.nome, this.idade);
-
-  void mostrarDados() {
-    print('Nome: $nome');
-    print('Idade: $idade');
+  @override 
+  String toString(){
+    return 'Id: $_id, Nome: $_nome';
   }
-
-  void cadastrarPessoa(pessoa p) {
-    
-    
-    pessoas.add(p);
-  }
-
 
 }
