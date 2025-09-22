@@ -15,6 +15,26 @@ class Emprestimo {
        this._nomeCliente = nomeCliente,
        this._nomeLivro = nomeLivro,
        this._dataEmprestimo = dataEmprestimo;
-  
+
+
+get id => this._id;
+
+set id( value) => this._id = value;
+
+get nomeCliente => this._nomeCliente;
+
+set nomeCliente( value) => this._nomeCliente = value;
+
+get nomeLivro => this._nomeLivro;
+
+set nomeLivro( value) => this._nomeLivro = value;
+
+get dataEmprestimo => this._dataEmprestimo;
+
+set dataEmprestimo( value) => this._dataEmprestimo = value;
+
+get dataDevolucao => this._dataDevolucao;
+
+set dataDevolucao( value) => this._dataDevolucao = value;  
 
 }

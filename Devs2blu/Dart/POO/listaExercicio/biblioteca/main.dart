@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import '../../../../../Udemy/dart002/OOP/Metodos/static_pessoa.dart';
 import 'livro.dart';
 import 'pessoa.dart';
 import 'emprestimo.dart';
@@ -18,12 +19,16 @@ void main() {
   while (funcionando != false) {
     switch (menu()) {
       case 1:
-
-
+        idPessoa++;
+        stdout.write('Nome: ');
+        String nome = stdin.readLineSync() ?? '*Não fornecido*';
+        Pessoa pessoa = Pessoa(id: idPessoa, nome: nome);
+        pessoas.add(pessoa);
+        print(pessoa);
         break;
 
       //Já da para cadastrar
-      case 2 :
+      case 2:
         idLivro++;
         stdout.write('Título: ');
         String titulo = stdin.readLineSync() ?? '*Não fornecido*';
@@ -41,19 +46,20 @@ void main() {
         print(livro);
         break;
 
-      case 3: 
-        if(livros.isEmpty || pessoas.isEmpty){
+      case 3:
+        if (livros.isEmpty || pessoas.isEmpty) {
           print('Não há dados suficientes para executar operação!');
-        }
-        else{
-          switch(menuLivros(livros)){
+        } else {
+          int? posPessoa = menuPessoas(pessoas);
+          int? posLivro = menuLivros(livros);
+          idEmprestimo++;
 
-
-          }
+          DateTime dataEmprestimo = DateTime.now();
+          Emprestimo(id: idEmprestimo, nomeCliente: pessoaNome, nomeLivro: livroTitulo, dataEmprestimo: dataEmprestimo, dataDevolucao: dataEmprestimo.add((Duration(days: 90))));
           //isso aqui é na hora de inserir
-          DateTime dataDevolucao = dataEmprestimo.add((Duration(days: 90)));
+          DateTime ;
         }
-      break;
+        break;
 
       case 5:
         funcionando = false;
@@ -76,12 +82,51 @@ int? menu() {
   return opcao;
 }
 
-// Faz o menu de livros, onde enquanto eu não escolher um válido ele vai ficar repetindo 
+// Faz o menu de livros, onde enquanto eu não escolher um válido ele vai ficar repetindo
 // Futuro: como exceptions para praticar tbm
-int? menuLivros(List livros){
-  print('Selecione um livro.\n');
-  for(Livro livro in livros){
-    print(livro);
-  } 
-  stdout.write('Escolha um livro');
+int? menuLivros(List livros) {
+  int? opcao;
+  do {
+    print('Selecione um livro pelo id.\n');
+    for (Livro l in livros) {
+      print("${l.id} - ${l.titulo}");
+    }
+    stdout.write('Escolha um livro: ');
+    opcao = int.tryParse(stdin.readLineSync() ?? '');
+    if (opcao == null || opcao <= 0 || opcao > livros.length) {
+      print('Opção inválida, tente novamente.');
+    }
+  } while (opcao == null || opcao <= 0 || opcao > livros.length);
+  return livros.indexOf(opcao);
 }
+
+int? menuPessoas(List pessoas) {
+  int? opcao;
+  do {
+    print("Escolha uma pessoa por id: ");
+    for (Pessoa p in pessoas) {
+      print('Id: ${p.id} - Nome: ${p.nome}');
+    }
+    opcao = int.tryParse(stdin.readLineSync() ?? '');
+    if (opcao == null || opcao > pessoas.length || opcao <= 0) {
+      print('Opção inválida, tente novamente!');
+    }
+  } while (opcao == null || opcao > pessoas.length);
+  return pessoas.indexOf(opcao);
+}
+
+//Criar metodos de achar Livro e pessoa
+/*
+          String pessoaNome;
+          for (Pessoa p in pessoas) {
+            if (posPessoa == p.id) {
+              pessoaNome = p.nome;
+            }
+          }
+          String livroTitulo;
+          for (Livro l in livros) {
+            if (posLivro = l.id) {
+              livroTitulo = l.titulo;
+            }
+          }
+*/
