@@ -1,5 +1,8 @@
 class Emprestimo {
   int _id;
+  int _idCliente;
+  int _idLivro;
+
   String _nomeCliente;
   String _nomeLivro;
   DateTime _dataEmprestimo;
@@ -7,34 +10,53 @@ class Emprestimo {
 
   Emprestimo({
     required int id,
+    required int idCliente,
+    required int idLivro,
     required String nomeCliente,
     required String nomeLivro,
     required DateTime dataEmprestimo,
     required DateTime dataDevolucao,
   }) : this._id = id,
+       this._idCliente = idCliente,
+       this._idLivro = idLivro,
        this._nomeCliente = nomeCliente,
        this._nomeLivro = nomeLivro,
-       this._dataEmprestimo = dataEmprestimo;
+       this._dataEmprestimo = dataEmprestimo,
+       this._dataDevolucao = dataEmprestimo.add(Duration(days: 90));
 
+  get id => this._id;
 
-get id => this._id;
+  set id(value) => this._id = value;
 
-set id( value) => this._id = value;
+  get idCliente => this._idCliente;
 
-get nomeCliente => this._nomeCliente;
+  set idCliente(value) => this._idCliente = value;
 
-set nomeCliente( value) => this._nomeCliente = value;
+  get idLivro => this._idLivro;
 
-get nomeLivro => this._nomeLivro;
+  set idLivro(value) => this._idLivro = value;
 
-set nomeLivro( value) => this._nomeLivro = value;
+  get nomeCliente => this._nomeCliente;
 
-get dataEmprestimo => this._dataEmprestimo;
+  set nomeCliente(value) => this._nomeCliente = value;
 
-set dataEmprestimo( value) => this._dataEmprestimo = value;
+  get nomeLivro => this._nomeLivro;
 
-get dataDevolucao => this._dataDevolucao;
+  set nomeLivro(value) => this._nomeLivro = value;
 
-set dataDevolucao( value) => this._dataDevolucao = value;  
+  get dataEmprestimo => this._dataEmprestimo;
 
+  set dataEmprestimo(value) => this._dataEmprestimo = value;
+
+  get dataDevolucao => this._dataDevolucao;
+
+  set dataDevolucao(value) => this._dataDevolucao = value;
+
+  String toString() {
+    return 'Id: $_id, '
+    'Nome: $_nomeCliente, '
+    'Autor: $_nomeLivro, '
+    'Data de emprestimo: $_dataEmprestimo, '
+    'Data de devolução: $_dataDevolucao';
+  }
 }
