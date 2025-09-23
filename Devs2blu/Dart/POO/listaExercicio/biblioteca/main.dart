@@ -35,6 +35,7 @@ void main() {
         String autor = stdin.readLineSync() ?? '*Não fornecido*';
         stdout.write('Ano de lançamento: ');
         int anoLancamento = int.tryParse(stdin.readLineSync() ?? '') ?? 2000;
+        
         Livro livro = Livro(
           id: idLivro,
           titulo: titulo,
