@@ -1,23 +1,18 @@
-class Animal {
+abstract class Animal {
 
   String? nome;
   int? idade;
 
   Animal({required this.nome, required this.idade});
 
-  void dormir(){
-    print('Dormindo...');
-  }
+  void dormir();
 
-  void comer(){
-    print('Comendo...');
-  }
+  void comer();
+
+  void morrer();
 
   @override
-  String toString(){
-    return 'Nome: $nome, Idade: $idade';
-  }
-
+  String toString();
 }
 
 
@@ -38,8 +33,17 @@ class Cachorro extends Animal{
   
   @override
   void comer (){
-    print('Comendo carne...');
-    super.comer();
+    print('Comendo carne...');;
+  }
+
+  @override
+  void dormir (){
+    print('Cachorro dormindo bastante');
+  }
+
+  @override
+  void morrer() {
+    print('DESGRAÇA NÃOOOOOOOO');
   }
 
   @override
@@ -66,6 +70,17 @@ class Gato extends Animal{
   @override
   void comer (){
     print('Comendo comida enlatada...');
+  }
+
+  @override
+  void dormir() {
+    print('Gato dormiu demais AAAAAAAAAAAAAAAAAAAAA');
+  }
+
+  @override
+  void morrer() {
+    --vidas;
+    print('-1 uma vida. Vidas restantes: $vidas');
   }
 
   @override
@@ -112,4 +127,21 @@ void main(){
   print(cachorro);
   print(gato);
 
+  //cast
+  Cachorro animal2 = funcao() as Cachorro;
+  animal2.latir();
+
+  //Mais seguro que cast
+  Animal animal3 = funcao();
+  if(animal3 is Cachorro){
+    animal3.latir();
+  } 
+
+  cachorro.morrer();
+  gato.morrer();
+
+}
+
+Animal funcao(){
+  return Cachorro(nome: 'Dog', idade: 2);
 }
