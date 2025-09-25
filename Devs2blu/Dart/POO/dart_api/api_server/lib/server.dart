@@ -73,7 +73,7 @@ Future<void> main() async {
         HttpStatus.created,
         body: jsonEncode({
           'message': 'Livro incluído com sucesso!',
-          'id': result.lastInsertID?.toInt(), // ⚡ BigInt → int
+          'id': result.lastInsertID.toInt(), // ⚡ BigInt → int
         }),
         headers: {'Content-Type': 'application/json; charset=utf-8'},
       );
