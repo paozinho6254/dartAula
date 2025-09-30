@@ -1,0 +1,5 @@
+class Locacao implements Taxacao{
+
+    
+
+}
