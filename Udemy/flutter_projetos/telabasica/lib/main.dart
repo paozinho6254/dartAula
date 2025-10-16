@@ -9,23 +9,60 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: HomePage(),
-    );
+    return const MaterialApp(home: HomePage());
   }
 }
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
+  void _entrou() {
+    print('Aumentou');
+  }
+
+  void _saiu() {
+    print('Decrementou');
+    // if(pessoas > 0){
+    //   pessoas--;
+    // }
+  }
+
   @override
   Widget build(BuildContext context) {
+    int pessoas = 200;
     return Scaffold(
+      backgroundColor: Colors.black,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('Receba'),
-          Text('Mais um'),
+          Text(
+            'Recebendo!',
+            style: TextStyle(fontSize: 48, color: Colors.white),
+          ),
+          Text('$pessoas', style: TextStyle(color: Colors.white, fontSize: 32)),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextButton(
+                onPressed: _saiu,
+                // basicamente o padding é o espaço que o texto ocupa em relação as bordas do botão
+                // a constante EdgeInsets.all(32) diz que vai acrescentar 32 pixels de espaço para todos os lados.
+                style: TextButton.styleFrom(backgroundColor: Colors.white, padding: const EdgeInsets.all(32)),
+                child: Text(
+                  "Saiu",
+                  style: TextStyle(color: Colors.black, fontSize: 20),
+                ),
+              ),
+              TextButton(
+                onPressed: _entrou,
+                style: TextButton.styleFrom(backgroundColor: Colors.white),
+                child: Text(
+                  "Entrou",
+                  style: TextStyle(color: Colors.black, fontSize: 20),
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );
