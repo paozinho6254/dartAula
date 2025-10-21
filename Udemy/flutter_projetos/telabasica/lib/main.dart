@@ -44,20 +44,40 @@ class HomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TextButton(
-                onPressed: _saiu,
-                // basicamente o padding é o espaço que o texto ocupa em relação as bordas do botão
-                // a constante EdgeInsets.all(32) diz que vai acrescentar 32 pixels de espaço para todos os lados.
-                style: TextButton.styleFrom(backgroundColor: Colors.white, fixedSize: const Size(125, 100),),
+                onPressed: _entrou,
+                style: TextButton.styleFrom(
+                  foregroundColor: Colors.black,
+                  backgroundColor: Colors.white,
+                  fixedSize: const Size(125, 125),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadiusGeometry.circular(30),
+                      side: BorderSide(
+                          color: Colors.green, width: 5
+                      )
+                  ),
+                ),
                 child: Text(
-                  "Saiu",
+                  "Entrou",
                   style: TextStyle(color: Colors.black, fontSize: 20),
                 ),
               ),
               TextButton(
-                onPressed: _entrou,
-                style: TextButton.styleFrom(backgroundColor: Colors.white, fixedSize: const Size(125, 100),),
+                onPressed: _saiu,
+                // basicamente o padding é o espaço que o texto ocupa em relação as bordas do botão
+                // a constante EdgeInsets.all(32) diz que vai acrescentar 32 pixels de espaço para todos os lados.
+                style: TextButton.styleFrom(
+                  foregroundColor: Colors.black,
+                  backgroundColor: Colors.white,
+                  fixedSize: const Size(125, 125),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadiusGeometry.circular(30),
+                    side: BorderSide(
+                      color: Colors.red, width: 5,
+                    )
+                  )
+                ),
                 child: Text(
-                  "Entrou",
+                  "Saiu",
                   style: TextStyle(color: Colors.black, fontSize: 20),
                 ),
               ),
