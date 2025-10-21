@@ -47,7 +47,7 @@ class HomePage extends StatelessWidget {
                 onPressed: _saiu,
                 // basicamente o padding é o espaço que o texto ocupa em relação as bordas do botão
                 // a constante EdgeInsets.all(32) diz que vai acrescentar 32 pixels de espaço para todos os lados.
-                style: TextButton.styleFrom(backgroundColor: Colors.white, padding: const EdgeInsets.all(32)),
+                style: TextButton.styleFrom(backgroundColor: Colors.white, fixedSize: const Size(125, 100),),
                 child: Text(
                   "Saiu",
                   style: TextStyle(color: Colors.black, fontSize: 20),
@@ -55,7 +55,7 @@ class HomePage extends StatelessWidget {
               ),
               TextButton(
                 onPressed: _entrou,
-                style: TextButton.styleFrom(backgroundColor: Colors.white),
+                style: TextButton.styleFrom(backgroundColor: Colors.white, fixedSize: const Size(125, 100),),
                 child: Text(
                   "Entrou",
                   style: TextStyle(color: Colors.black, fontSize: 20),
