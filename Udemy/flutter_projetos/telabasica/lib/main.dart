@@ -21,12 +21,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  @override
+
   int pessoas = 0;
+
 
   void _entrou() {
     setState(() {
-      pessoas++;
+      if (pessoas < 20){
+        pessoas++;
+    }
     });
     print(pessoas);
   }
@@ -39,6 +42,9 @@ class _HomePageState extends State<HomePage> {
       print(pessoas);
     }
   }
+
+  bool get isEmpty => pessoas == 0;
+  bool get isFull => pessoas == 20;
 
   @override
   Widget build(BuildContext context) {
@@ -55,8 +61,8 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
-              'Recebendo!',
+            Text(
+              isEmpty ? 'Restaurante vazio!' : isFull ? 'Lotado!' : 'Recebendo!',
               style: TextStyle(fontSize: 48, color: Colors.white),
             ),
             Padding(
@@ -70,14 +76,14 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TextButton(
-                  onPressed: _entrou,
+                  onPressed: isFull ? null : _entrou,
                   style: TextButton.styleFrom(
                     foregroundColor: Colors.black,
-                    backgroundColor: Colors.white,
+                    backgroundColor: isFull ? Colors.white.withValues(alpha: 0.2) : Colors.white,
                     fixedSize: const Size(125, 125),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadiusGeometry.circular(30),
-                      side: BorderSide(color: Colors.green, width: 5),
+                      side: BorderSide(color: isFull ? Colors.white.withValues(alpha: 0.0) : Colors.green, width: 5),
                     ),
                   ),
                   child: const Text(
@@ -87,16 +93,16 @@ class _HomePageState extends State<HomePage> {
                 ),
                 const SizedBox(width: 30),
                 TextButton(
-                  onPressed: _saiu,
+                  onPressed: isEmpty ? null : _saiu,
                   // basicamente o padding é o espaço que o texto ocupa em relação as bordas do botão
                   // a constante EdgeInsets.all(32) diz que vai acrescentar 32 pixels de espaço para todos os lados.
                   style: TextButton.styleFrom(
                     foregroundColor: Colors.black,
-                    backgroundColor: Colors.white,
+                    backgroundColor: isEmpty ? Colors.white.withValues(alpha: 0.2) : Colors.white,
                     fixedSize: const Size(125, 125),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadiusGeometry.circular(30),
-                      side: BorderSide(color: Colors.red, width: 5),
+                      side: BorderSide(color: isEmpty ? Colors.white.withValues(alpha: 0.0) : Colors.red, width: 5),
                     ),
                   ),
                   child: const Text(
@@ -111,5 +117,4 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-
 }
