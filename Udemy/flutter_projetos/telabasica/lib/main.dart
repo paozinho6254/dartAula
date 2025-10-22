@@ -9,35 +9,47 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: HomePage());
+    return MaterialApp(home: HomePage(), debugShowCheckedModeBanner: false,);
   }
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  int pessoas = 0;
+
   void _entrou() {
-    print('Aumentou');
+    setState(() {
+      pessoas++;
+    });
+    print(pessoas);
   }
 
   void _saiu() {
-    print('Decrementou');
-    // if (pessoas > 0) {
-    //   pessoas--;
-    // }
+    if (pessoas > 0) {
+      setState(() {
+        pessoas--;
+      });
+      print(pessoas);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    int pessoas = 0;
     return Scaffold(
       backgroundColor: Colors.black,
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             //image: NetworkImage('https://akamai.sscdn.co/uploadfile/letras/albuns/f/a/e/2/791351570015623.jpg'),
-            image: AssetImage('assets/images/Avion.jpg'),
-            fit: BoxFit.cover
+              image: AssetImage('assets/images/Avion.jpg'),
+              fit: BoxFit.cover
           ),
         ),
         child: Column(
@@ -47,10 +59,10 @@ class HomePage extends StatelessWidget {
               'Recebendo!',
               style: TextStyle(fontSize: 48, color: Colors.white),
             ),
-            const Padding(
-              padding: EdgeInsets.all(48),
+            Padding(
+              padding: const EdgeInsets.all(48),
               child: Text(
-                '0',
+                '$pessoas',
                 style: TextStyle(color: Colors.white, fontSize: 100),
               ),
             ),
@@ -99,4 +111,5 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
+
 }
