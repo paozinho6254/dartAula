@@ -24,6 +24,7 @@ class TodoListPage extends StatelessWidget {
                   labelText: 'E-mail',
                 ),
                 onChanged: onChanged,
+                onSubmitted: onSubmited,
               ),
               // Quando o botão ser apertado, ele terá escrito 'Entrar' e fará função
               // login (onPressed) ||
@@ -42,9 +43,13 @@ class TodoListPage extends StatelessWidget {
     emailController.clear();
   }
   void onChanged(String text){
-    print(text);
+    //print(text);
   }
 }
+
+  void onSubmited(String text){
+    print(text);
+  }
 
 /*
 final _cpfFormatter = MaslTextInputFormatter(
