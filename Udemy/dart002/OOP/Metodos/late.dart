@@ -33,4 +33,5 @@ void main(){
   pessoa p1 = pessoa(idade: 21, nome: 'Pãozinho');
   p1.cpf('11813742900');
   p1.escCpf();
+  print(p1.temperatura);  
 }
