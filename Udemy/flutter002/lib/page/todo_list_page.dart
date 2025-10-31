@@ -43,7 +43,7 @@ class TodoListPage extends StatelessWidget {
     emailController.clear();
   }
   void onChanged(String text){
-    //print(text);
+    print(text);
   }
 }
 
