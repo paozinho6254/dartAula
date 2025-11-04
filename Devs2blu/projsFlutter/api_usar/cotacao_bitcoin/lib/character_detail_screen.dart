@@ -39,8 +39,8 @@ class _CharacterDetailScreenState extends State<CharacterDetailScreen> {
         final Character character = characterDetailFromJson(response.body);
 
         final duration = DateTime.now().difference(startTime);
-        if (duration < const Duration(seconds: 1)) {
-          await Future.delayed(const Duration(seconds: 1) - duration);
+        if (duration < const Duration(seconds: 3)) {
+          await Future.delayed(const Duration(seconds: 3) - duration);
         }
 
         setState(() {

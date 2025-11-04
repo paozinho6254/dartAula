@@ -69,8 +69,8 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
       final duration = DateTime.now().difference(startTime);
 
       // 3 (Erro). Se demorou MENOS de 1 segundo, esperamos o restante
-      if (duration < const Duration(seconds: 1)) {
-        await Future.delayed(const Duration(seconds: 1) - duration);
+      if (duration < const Duration(seconds: 3)) {
+        await Future.delayed(const Duration(seconds: 3) - duration);
       }
 
       // 4 (Erro). Atualizamos a tela com o erro
