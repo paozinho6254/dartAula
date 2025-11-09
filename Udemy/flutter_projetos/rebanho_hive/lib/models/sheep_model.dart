@@ -10,7 +10,7 @@ class Sheep extends HiveObject {
   String rfid;
 
   @HiveField(1)
-  int idade;
+  int age;
 
   @HiveField(2)
   bool isVaccinated;
@@ -22,8 +22,17 @@ class Sheep extends HiveObject {
   //construtor
   Sheep({
     required this.rfid,
-    required this.idade,
+    required this.age,
     required this.isVaccinated,
     required this.breed,
   });
+
+  String getBreedVaccinated (){
+    if(isVaccinated!){
+      return 'Não vacinada';
+    }
+    else{
+      return 'Vacinada';
+    }
+  }
 }
