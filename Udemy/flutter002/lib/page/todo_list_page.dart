@@ -1,59 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-  
+
 class TodoListPage extends StatelessWidget {
   TodoListPage({super.key});
-
-  final TextEditingController emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            //Neste caso se comporta de maneira parecida ao mainAxisAligment
-            //Mas ele só fala que vai ocupar o mínimo possível da tela
-            //(e não vai funcionar sem o Center pós-body)
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: emailController ,
-                decoration: InputDecoration(
-                  labelText: 'E-mail',
+      body: Padding(
+        //pra não ficar feio já delimita aqui
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Coloque uma tarefa',
+                      hintText: 'Tarefas mano faz algo',
+                    ),
+                  ),
                 ),
-                onChanged: onChanged,
-                onSubmitted: onSubmited,
-              ),
-              // Quando o botão ser apertado, ele terá escrito 'Entrar' e fará função
-              // login (onPressed) ||
-              //                   V
-              ElevatedButton(onPressed: login, child: Text('entrar'))
-            ],
-          ),
+                // width é tamanho geral
+                SizedBox(width: 8),
+                ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xff1fd4f2),
+                    padding: EdgeInsets.all(15),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadiusGeometry.circular(7),
+                    ),
+                  ),
+                  child: Icon(Icons.add, size: 28, color: Colors.white,),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );
   }
-  // Quando chamado, ele imprime o texto colocado no campo de texto no console
-  void login(){
-    String text = emailController.text;
-    print('$text');
-    emailController.clear();
-  }
-  void onChanged(String text){
-    print(text);
-  }
 }
-
-  void onSubmited(String text){
-    print(text);
-  }
-
-/*
-final _cpfFormatter = MaslTextInputFormatter(
-  mask: '###.###.###-##'
-  filter:
-)
- */
