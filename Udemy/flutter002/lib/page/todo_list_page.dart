@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:lista_tarefas/widgets/todo.dart';
+import 'package:lista_tarefas/model/todo.dart';
+import 'package:lista_tarefas/widgets/todo_list_item.dart';
 
-import '../widgets/todo.dart';
+import '../widgets/todo_list_item.dart';
 
 class TodoListPage extends StatefulWidget {
   TodoListPage({super.key});
@@ -15,7 +16,7 @@ class TodoListPage extends StatefulWidget {
 class _TodoListPageState extends State<TodoListPage> {
   TextEditingController todoController = TextEditingController();
 
-  List<String> todos = [];
+  List<Todo> todos = [];
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +49,7 @@ class _TodoListPageState extends State<TodoListPage> {
                         String text = todoController.text;
                         //adiciona text no list
                         setState(() {
-                          todos.add(text);
+                          Todo myTodo = Todo(title: text, date: DateTime.now());
                         });
                         todoController.clear();
                       },
@@ -69,7 +70,8 @@ class _TodoListPageState extends State<TodoListPage> {
                   child: ListView(
                     shrinkWrap: true,
                     children: [
-                      for (String todo in todos) TodoListItem(title: todo, date: DateTime.now()),
+                      for (Todo todo in todos)
+                        TodoListItem(todo: todo),
                     ],
                   ),
                 ),

@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class TodoListItem extends StatelessWidget {
-  const TodoListItem({super.key, required this.title, required this.date});
+import '../model/todo.dart';
 
-  final String title;
-  final DateTime date;
+class TodoListItem extends StatelessWidget {
+  const TodoListItem({super.key, required this.todo});
+
+  final Todo todo;
 
   @override
   Widget build(BuildContext context) {
@@ -19,17 +20,17 @@ class TodoListItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('$date', style: TextStyle(fontSize: 13)),
+          Text(todo.date.toString(), style: TextStyle(fontSize: 13)),
           Text(
-            title,
+            todo.title,
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
-          // aqui a descrição da tarefa
         ],
       ),
     );
   }
 }
 
+// aqui a descrição da tarefa
 //ExpansionTile(children: [],) interessante explorar depois para dar descrição
 //para as tarefas
