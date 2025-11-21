@@ -50,6 +50,7 @@ class _TodoListPageState extends State<TodoListPage> {
                         //adiciona text no list
                         setState(() {
                           Todo myTodo = Todo(title: text, date: DateTime.now());
+                          todos.add(myTodo);
                         });
                         todoController.clear();
                       },

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../model/todo.dart';
 
@@ -20,7 +21,7 @@ class TodoListItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(todo.date.toString(), style: TextStyle(fontSize: 13)),
+          Text(DateFormat('dd/MM/yyyy').format(todo.date), style: TextStyle(fontSize: 13)),
           Text(
             todo.title,
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),

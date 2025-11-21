@@ -5,7 +5,4 @@ class Todo{
   String title;
   DateTime date;
 
-
-
-
 }
