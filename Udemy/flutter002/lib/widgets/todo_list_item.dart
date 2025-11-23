@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
 
 import '../model/todo.dart';
@@ -11,22 +12,45 @@ class TodoListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadiusGeometry.circular(10),
-        color: Colors.grey[350],
-      ),
-      margin: const EdgeInsets.symmetric(vertical: 4),
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(DateFormat('dd/MMM/yyyy - HH:mm').format(todo.date), style: TextStyle(fontSize: 13)),
-          Text(
-            todo.title,
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 3),
+      child: Slidable(
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadiusGeometry.circular(3),
+            color: Colors.grey[350],
           ),
-        ],
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                DateFormat('dd/MMM/yyyy - HH:mm').format(todo.date),
+                style: TextStyle(fontSize: 13),
+              ),
+              Text(
+                todo.title,
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+        ),
+        //aparece no final do item
+        endActionPane: ActionPane(
+          motion: const StretchMotion(),
+          extentRatio: 0.25,
+          children: [
+            //o que aparece ao slidar
+            SlidableAction(
+              onPressed: (context) {},
+              borderRadius: BorderRadius.circular(3),
+              backgroundColor: Colors.red,
+              foregroundColor: Colors.white,
+              icon: Icons.delete,
+              label: 'Deletar',
+            ),
+          ],
+        ),
       ),
     );
   }
