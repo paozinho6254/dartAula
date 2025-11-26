@@ -17,6 +17,68 @@ class _TodoListPageState extends State<TodoListPage> {
   TextEditingController todoController = TextEditingController();
 
   List<Todo> todos = [];
+  Todo? temporariaTodo;
+  int? posTemporariaTodo;
+
+  void onDelete(Todo todo) {
+    temporariaTodo = todo;
+    posTemporariaTodo = todos.indexOf(todo);
+    setState(() {
+      todos.remove(todo);
+    });
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          'Tarefa ${todo.title} removida com sucesso',
+          style: TextStyle(color: Colors.black),
+        ),
+        backgroundColor: Colors.white,
+        action: SnackBarAction(
+          label: 'Undo',
+          onPressed: () {
+            setState(() {
+              todos.insert(posTemporariaTodo!, temporariaTodo!);
+            });
+          },
+          backgroundColor: Color(0xff1fd4f2),
+          textColor: Colors.white,
+        ),
+        duration: Duration(seconds: 5),
+      ),
+    );
+  }
+
+  void deleteAll() {
+    setState(() {
+      todos.clear();
+    });
+  }
+
+  void showDialogConfirmationDelete() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('limpar tudo?'),
+        content: Text('Você tem certeza que deseja apagar tudo?'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text('Cancelar'),
+          ),
+          TextButton(
+            onPressed: () {
+              deleteAll();
+              Navigator.of(context).pop();
+            },
+            child: Text('Limpar tudo'),
+          ),
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +134,7 @@ class _TodoListPageState extends State<TodoListPage> {
                     shrinkWrap: true,
                     children: [
                       for (Todo todo in todos)
-                        TodoListItem(todo: todo),
+                        TodoListItem(todo: todo, onDelete: onDelete),
                     ],
                   ),
                 ),
@@ -80,10 +142,12 @@ class _TodoListPageState extends State<TodoListPage> {
                 Row(
                   children: [
                     Expanded(
-                      child: Text('Você possui ${todos.length} tarefas presentes'),
+                      child: Text(
+                        'Você possui ${todos.length} tarefas presentes',
+                      ),
                     ),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: showDialogConfirmationDelete,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Color(0xff1fd4f2),
                         padding: EdgeInsets.all(15),
